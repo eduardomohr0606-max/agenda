@@ -25,7 +25,6 @@
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      transition: background 0.3s;
     }
 
     .header {
@@ -61,21 +60,13 @@
       gap: 15px;
     }
 
-    .calendar {
-      background: var(--card);
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-
+    .calendar { background: var(--card); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden; }
     .calendar-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 15px 20px;
-      background: var(--card);
     }
-
     .calendar-header button {
       background: none;
       border: none;
@@ -85,16 +76,8 @@
       border-radius: 50%;
       color: var(--primary);
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-
-    .calendar-header h2 {
-      margin: 0;
-      font-size: 1.35rem;
-      font-weight: 600;
-    }
+    .calendar-header h2 { margin: 0; font-size: 1.35rem; font-weight: 600; }
 
     .weekdays {
       display: grid;
@@ -103,7 +86,6 @@
       text-align: center;
       padding: 10px 0;
       font-weight: 600;
-      font-size: 0.95rem;
     }
     [data-theme="dark"] .weekdays { background: #2a2a2a; }
 
@@ -122,35 +104,16 @@
       border-radius: 10px;
       cursor: pointer;
       position: relative;
-      transition: all 0.2s;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
     }
 
-    .day:hover { background: #f0f4ff; }
-    [data-theme="dark"] .day:hover { background: #2a2a2a; }
-
-    .day.today {
-      background: #e3f0ff;
-      font-weight: bold;
-    }
+    .day.today { background: #e3f0ff; font-weight: bold; }
     [data-theme="dark"] .day.today { background: #1e3a8a; }
 
-    .day.completed {
-      background: #d4f4dd !important;
-      color: #166534;
-    }
-    [data-theme="dark"] .day.completed {
-      background: #14532d !important;
-      color: #86efac;
-    }
-
-    .day-number {
-      font-size: 1.1rem;
-      margin-bottom: 6px;
-    }
+    .day.completed { background: #d4f4dd !important; color: #166534; }
+    [data-theme="dark"] .day.completed { background: #14532d !important; color: #86efac; }
 
     .day.has-events::after {
       content: '';
@@ -183,18 +146,11 @@
       font-size: 1.05rem;
       cursor: pointer;
       width: 100%;
-      margin: 10px 0;
+      margin: 8px 0;
     }
 
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-success {
-      background: #22c55e;
-      color: white;
-    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-success { background: #22c55e; color: white; }
 
     .event-item {
       background: #f8f9fa;
@@ -202,7 +158,6 @@
       margin-bottom: 12px;
       border-radius: 12px;
       border-left: 5px solid var(--primary);
-      position: relative;
     }
     [data-theme="dark"] .event-item { background: #2a2a2a; }
 
@@ -231,55 +186,58 @@
       max-width: 420px;
     }
 
-    input, textarea {
+    input, textarea, select {
       width: 100%;
       padding: 12px;
-      margin: 10px 0;
+      margin: 8px 0;
       border: 1px solid #ddd;
       border-radius: 10px;
       font-size: 1rem;
     }
-    [data-theme="dark"] input, [data-theme="dark"] textarea {
+    [data-theme="dark"] input, [data-theme="dark"] textarea, [data-theme="dark"] select {
       background: #2a2a2a;
       color: white;
       border-color: #444;
+    }
+
+    .date-row {
+      display: flex;
+      gap: 10px;
+    }
+    .date-row select {
+      flex: 1;
     }
   </style>
 </head>
 <body data-theme="light">
 
-  <!-- Cabeçalho -->
   <div class="header">
     <h2>Minha Agenda</h2>
     <button class="theme-toggle" id="themeToggle">☀️</button>
   </div>
 
-  <!-- Tela de Login / Cadastro -->
-  <div id="authScreen" class="container" style="margin-top: 40px;">
-    <div style="background: var(--card); border-radius: 16px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
-      <h1 style="text-align:center; color:var(--primary); margin-bottom:25px;" id="authTitle">Entrar na Agenda</h1>
+  <!-- Tela Login -->
+  <div id="authScreen" class="container" style="margin-top:40px;">
+    <div style="background:var(--card);border-radius:16px;padding:30px;box-shadow:0 10px 30px rgba(0,0,0,0.15);">
+      <h1 style="text-align:center;color:var(--primary);margin-bottom:25px;" id="authTitle">Entrar na Agenda</h1>
       
       <div id="loginForm">
         <input type="text" id="loginUsername" placeholder="Nome de usuário">
         <input type="password" id="loginPassword" placeholder="Senha">
         <button class="btn btn-primary" onclick="login()">Entrar</button>
-        <div style="text-align:center; margin-top:15px; color:var(--primary); cursor:pointer;" onclick="showRegister()">
-          Não tem conta? Cadastre-se
-        </div>
+        <div style="text-align:center;margin-top:15px;color:var(--primary);cursor:pointer;" onclick="showRegister()">Não tem conta? Cadastre-se</div>
       </div>
 
       <div id="registerForm" style="display:none;">
         <input type="text" id="regUsername" placeholder="Escolha um nome de usuário">
         <input type="password" id="regPassword" placeholder="Crie uma senha">
         <button class="btn btn-primary" onclick="register()">Cadastrar</button>
-        <div style="text-align:center; margin-top:15px; color:var(--primary); cursor:pointer;" onclick="showLogin()">
-          Já tem conta? Faça login
-        </div>
+        <div style="text-align:center;margin-top:15px;color:var(--primary);cursor:pointer;" onclick="showLogin()">Já tem conta? Faça login</div>
       </div>
     </div>
   </div>
 
-  <!-- Tela Principal (Agenda) -->
+  <!-- Tela da Agenda -->
   <div id="appScreen" class="hidden container">
     <div class="calendar">
       <div class="calendar-header">
@@ -296,8 +254,7 @@
     <div class="sidebar">
       <div class="selected-date" id="selectedDate">Selecione um dia</div>
       <button class="btn btn-primary" id="addEventBtn">+ Novo Compromisso</button>
-      
-      <h3 style="margin: 20px 0 10px 0;">Compromissos do dia</h3>
+      <h3 style="margin:20px 0 10px 0;">Compromissos do dia</h3>
       <div id="eventList"></div>
     </div>
   </div>
@@ -306,12 +263,32 @@
   <div class="modal" id="modal">
     <div class="modal-content">
       <h2 id="modalTitle">Novo Compromisso</h2>
-      <input type="text" id="eventTitle" placeholder="Título do compromisso">
+      
+      <input type="text" id="eventTitle" placeholder="Título do compromisso" readonly>
       <input type="time" id="eventTime">
-      <textarea id="eventDesc" rows="3" placeholder="Descrição (opcional)"></textarea>
+      <textarea id="eventDesc" rows="3" placeholder="Descrição (opcional)" readonly></textarea>
+
+      <label style="margin-top:15px; display:block;">Nova Data:</label>
+      <div class="date-row">
+        <select id="rescheduleDay"></select>
+        <select id="rescheduleMonth">
+          <option value="0">Janeiro</option>
+          <option value="1">Fevereiro</option>
+          <option value="2">Março</option>
+          <option value="3">Abril</option>
+          <option value="4">Maio</option>
+          <option value="5">Junho</option>
+          <option value="6">Julho</option>
+          <option value="7">Agosto</option>
+          <option value="8">Setembro</option>
+          <option value="9">Outubro</option>
+          <option value="10">Novembro</option>
+          <option value="11">Dezembro</option>
+        </select>
+      </div>
 
       <label style="margin-top:10px;">Cor:</label>
-      <div style="display:flex; gap:12px; margin:12px 0;">
+      <div style="display:flex;gap:12px;margin:12px 0;">
         <div class="color-option selected" data-color="#4a6cf7" style="width:32px;height:32px;border-radius:50%;background:#4a6cf7;"></div>
         <div class="color-option" data-color="#e74c3c" style="width:32px;height:32px;border-radius:50%;background:#e74c3c;"></div>
         <div class="color-option" data-color="#f39c12" style="width:32px;height:32px;border-radius:50%;background:#f39c12;"></div>
@@ -319,19 +296,19 @@
         <div class="color-option" data-color="#8e44ad" style="width:32px;height:32px;border-radius:50%;background:#8e44ad;"></div>
       </div>
 
-      <div style="display:flex; gap:12px; margin-top:25px;">
+      <div style="display:flex;gap:12px;margin-top:25px;">
         <button class="btn" style="background:#95a5a6;color:white;" id="cancelBtn">Cancelar</button>
-        <button class="btn btn-primary" id="saveBtn">Salvar</button>
+        <button class="btn btn-primary" id="saveBtn">Salvar Remarcação</button>
       </div>
     </div>
   </div>
 
   <script>
-    // ==================== DADOS E USUÁRIO ====================
+    // ==================== DADOS ====================
     let currentUser = null;
     let users = JSON.parse(localStorage.getItem('agendaUsers')) || {};
     let eventsDB = JSON.parse(localStorage.getItem('agendaEventsDB')) || {};
-    let completedDays = JSON.parse(localStorage.getItem('completedDays')) || {}; // { "usuario": ["2026-04-26", ...] }
+    let completedDays = JSON.parse(localStorage.getItem('completedDays')) || {};
 
     function saveData() {
       localStorage.setItem('agendaUsers', JSON.stringify(users));
@@ -339,50 +316,41 @@
       localStorage.setItem('completedDays', JSON.stringify(completedDays));
     }
 
-    // ==================== LOGIN / CADASTRO ====================
+    // Login
     function showLogin() {
       document.getElementById('loginForm').style.display = 'block';
       document.getElementById('registerForm').style.display = 'none';
       document.getElementById('authTitle').textContent = "Entrar na Agenda";
     }
-
     function showRegister() {
       document.getElementById('loginForm').style.display = 'none';
       document.getElementById('registerForm').style.display = 'block';
       document.getElementById('authTitle').textContent = "Criar Conta";
     }
-
     function register() {
       const username = document.getElementById('regUsername').value.trim();
       const password = document.getElementById('regPassword').value;
       if (!username || !password) return alert("Preencha todos os campos");
       if (users[username]) return alert("Usuário já existe!");
-      
       users[username] = { password };
       completedDays[username] = [];
       saveData();
       alert("Conta criada com sucesso!");
       showLogin();
     }
-
     function login() {
       const username = document.getElementById('loginUsername').value.trim();
       const password = document.getElementById('loginPassword').value;
-      
-      if (!users[username] || users[username].password !== password) {
-        return alert("Usuário ou senha incorretos!");
-      }
-
+      if (!users[username] || users[username].password !== password) return alert("Usuário ou senha incorretos!");
       currentUser = username;
       document.getElementById('authScreen').classList.add('hidden');
       document.getElementById('appScreen').classList.remove('hidden');
-      
       renderCalendar();
       const today = new Date();
       selectDay(today.getDate(), today.getMonth(), today.getFullYear());
     }
 
-    // ==================== TEMA CLARO / ESCURO ====================
+    // Tema
     const themeToggle = document.getElementById('themeToggle');
     function toggleTheme() {
       const isDark = document.body.getAttribute('data-theme') === 'dark';
@@ -390,8 +358,6 @@
       themeToggle.textContent = isDark ? '☀️' : '🌙';
       localStorage.setItem('agendaTheme', isDark ? 'light' : 'dark');
     }
-
-    // Carregar tema salvo
     if (localStorage.getItem('agendaTheme') === 'dark') {
       document.body.setAttribute('data-theme', 'dark');
       themeToggle.textContent = '🌙';
@@ -409,28 +375,10 @@
       return eventsDB[currentUser];
     }
 
-    function isDayCompleted(dateKey) {
-      return completedDays[currentUser] && completedDays[currentUser].includes(dateKey);
-    }
-
-    function toggleDayCompleted(dateKey) {
-      if (!completedDays[currentUser]) completedDays[currentUser] = [];
-      const index = completedDays[currentUser].indexOf(dateKey);
-      
-      if (index === -1) {
-        completedDays[currentUser].push(dateKey);
-      } else {
-        completedDays[currentUser].splice(index, 1);
-      }
-      saveData();
-      renderCalendar();
-    }
-
     function renderCalendar() {
       currentEvents = getUserEvents();
       const year = currentDate.getFullYear();
       const month = currentDate.getMonth();
-
       document.getElementById('monthYear').textContent = 
         `${["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"][month]} ${year}`;
 
@@ -440,7 +388,6 @@
       const firstDay = new Date(year, month, 1).getDay();
       const lastDay = new Date(year, month + 1, 0).getDate();
 
-      // Dias do mês anterior
       for (let i = firstDay - 1; i >= 0; i--) {
         const el = document.createElement('div');
         el.className = 'day other-month';
@@ -448,32 +395,13 @@
         daysGrid.appendChild(el);
       }
 
-      // Dias do mês atual
       for (let day = 1; day <= lastDay; day++) {
         const dateKey = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
         const dayEl = document.createElement('div');
-        
         dayEl.className = `day ${dateKey === getTodayKey() ? 'today' : ''}`;
-        if (isDayCompleted(dateKey)) dayEl.classList.add('completed');
         if (currentEvents[dateKey] && currentEvents[dateKey].length > 0) dayEl.classList.add('has-events');
-
         dayEl.innerHTML = `<div class="day-number">${day}</div>`;
-
-        // Clique simples = selecionar dia
-        dayEl.addEventListener('click', () => selectDay(day, month, year));
-
-        // Duplo clique rápido = marcar como concluído
-        let lastTap = 0;
-        dayEl.addEventListener('touchend', (e) => {
-          const currentTime = new Date().getTime();
-          const tapLength = currentTime - lastTap;
-          if (tapLength < 500 && tapLength > 0) {
-            e.preventDefault();
-            toggleDayCompleted(dateKey);
-          }
-          lastTap = currentTime;
-        });
-
+        dayEl.onclick = () => selectDay(day, month, year);
         daysGrid.appendChild(dayEl);
       }
     }
@@ -486,10 +414,8 @@
     function selectDay(day, month, year) {
       selectedDayKey = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
       const dateObj = new Date(year, month, day);
-      
       document.getElementById('selectedDate').textContent = 
-        dateObj.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
-
+        dateObj.toLocaleDateString('pt-BR', {weekday:'long', day:'numeric', month:'long'});
       renderEventList();
     }
 
@@ -499,7 +425,7 @@
       const dayEvents = currentEvents[selectedDayKey] || [];
 
       if (dayEvents.length === 0) {
-        list.innerHTML = '<p style="color:#888; text-align:center; padding:20px;">Nenhum compromisso neste dia</p>';
+        list.innerHTML = '<p style="color:#888;text-align:center;padding:20px;">Nenhum compromisso neste dia</p>';
         return;
       }
 
@@ -507,12 +433,12 @@
         const div = document.createElement('div');
         div.className = `event-item ${ev.done ? 'done' : ''}`;
         div.style.borderLeftColor = ev.color || '#4a6cf7';
-        
         div.innerHTML = `
           <strong>${ev.time || 'Dia todo'}</strong> — ${ev.title}
-          ${ev.desc ? `<p style="margin:8px 0 0 0; font-size:0.9rem; color:#666;">${ev.desc}</p>` : ''}
-          <div style="margin-top:12px; display:flex; gap:8px;">
-            <button onclick="toggleDone(${i})" class="btn btn-success" style="padding:6px 12px; font-size:0.9rem;">${ev.done ? 'Desfazer' : '✓ Feito'}</button>
+          ${ev.desc ? `<p style="margin:8px 0 0 0;font-size:0.9rem;color:#666;">${ev.desc}</p>` : ''}
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+            <button onclick="toggleDone(${i})" class="btn btn-success" style="padding:6px 12px;font-size:0.9rem;">${ev.done ? 'Desfazer' : '✓ Feito'}</button>
+            <button onclick="rescheduleEvent(${i})" style="background:#f39c12;color:white;border:none;padding:6px 12px;border-radius:6px;font-size:0.9rem;">Remarcar</button>
             <button onclick="deleteEvent(${i})" style="background:#e74c3c;color:white;border:none;padding:6px 12px;border-radius:6px;font-size:0.9rem;">Excluir</button>
           </div>
         `;
@@ -520,8 +446,108 @@
       });
     }
 
+    // ==================== REMARCAR (exclui o antigo automaticamente) ====================
+    let rescheduleIndex = null;
+
+    window.rescheduleEvent = function(index) {
+      const event = currentEvents[selectedDayKey][index];
+      if (!event) return;
+
+      rescheduleIndex = index;
+
+      document.getElementById('modalTitle').textContent = "Remarcar Compromisso";
+      document.getElementById('eventTitle').value = event.title;
+      document.getElementById('eventTime').value = event.time || '';
+      document.getElementById('eventDesc').value = event.desc || '';
+
+      document.getElementById('eventTitle').readOnly = true;
+      document.getElementById('eventDesc').readOnly = true;
+
+      // Preenche dia e mês atuais
+      const [year, month, day] = selectedDayKey.split('-').map(Number);
+      const daySelect = document.getElementById('rescheduleDay');
+      daySelect.innerHTML = '';
+      for (let d = 1; d <= 31; d++) {
+        const opt = document.createElement('option');
+        opt.value = d;
+        opt.textContent = d;
+        if (d === day) opt.selected = true;
+        daySelect.appendChild(opt);
+      }
+      document.getElementById('rescheduleMonth').value = month - 1;
+
+      document.getElementById('modal').style.display = 'flex';
+    };
+
+    document.getElementById('saveBtn').onclick = () => {
+      if (rescheduleIndex !== null) {
+        const oldEvent = currentEvents[selectedDayKey][rescheduleIndex];
+
+        const newDay = parseInt(document.getElementById('rescheduleDay').value);
+        const newMonth = parseInt(document.getElementById('rescheduleMonth').value);
+        const newYear = currentDate.getFullYear();
+        const newTime = document.getElementById('eventTime').value;
+
+        const newDateKey = `${newYear}-${String(newMonth+1).padStart(2,'0')}-${String(newDay).padStart(2,'0')}`;
+
+        // EXCLUI O COMPROMISSO ANTIGO
+        currentEvents[selectedDayKey].splice(rescheduleIndex, 1);
+        if (currentEvents[selectedDayKey].length === 0) {
+          delete currentEvents[selectedDayKey];
+        }
+
+        // Cria o compromisso no novo dia
+        if (!currentEvents[newDateKey]) currentEvents[newDateKey] = [];
+        currentEvents[newDateKey].push({
+          title: oldEvent.title,
+          time: newTime,
+          desc: oldEvent.desc,
+          color: oldEvent.color,
+          done: false
+        });
+
+        rescheduleIndex = null;
+      } 
+      else {
+        // Novo compromisso normal
+        const title = document.getElementById('eventTitle').value.trim();
+        if (!title) return alert("O título é obrigatório");
+        if (!currentEvents[selectedDayKey]) currentEvents[selectedDayKey] = [];
+        currentEvents[selectedDayKey].push({
+          title,
+          time: document.getElementById('eventTime').value,
+          desc: document.getElementById('eventDesc').value,
+          color: document.querySelector('.color-option.selected').dataset.color,
+          done: false
+        });
+      }
+
+      saveData();
+      document.getElementById('modal').style.display = 'none';
+      renderCalendar();
+      renderEventList();
+    };
+
+    document.getElementById('cancelBtn').onclick = () => {
+      rescheduleIndex = null;
+      document.getElementById('modal').style.display = 'none';
+    };
+
+    // Novo compromisso
+    document.getElementById('addEventBtn').onclick = () => {
+      if (!selectedDayKey) return alert("Selecione um dia primeiro!");
+      rescheduleIndex = null;
+      document.getElementById('modalTitle').textContent = "Novo Compromisso";
+      document.getElementById('eventTitle').value = '';
+      document.getElementById('eventTime').value = '';
+      document.getElementById('eventDesc').value = '';
+      document.getElementById('eventTitle').readOnly = false;
+      document.getElementById('eventDesc').readOnly = false;
+      document.getElementById('modal').style.display = 'flex';
+    };
+
+    // Outras funções
     window.toggleDone = function(index) {
-      if (!currentEvents[selectedDayKey]) return;
       currentEvents[selectedDayKey][index].done = !currentEvents[selectedDayKey][index].done;
       saveData();
       renderEventList();
@@ -537,50 +563,6 @@
       }
     };
 
-    // ==================== MODAL ====================
-    let editingIndex = null;
-
-    document.getElementById('addEventBtn').onclick = () => {
-      if (!selectedDayKey) return alert("Selecione um dia primeiro!");
-      editingIndex = null;
-      document.getElementById('modalTitle').textContent = "Novo Compromisso";
-      document.getElementById('eventTitle').value = '';
-      document.getElementById('eventTime').value = '';
-      document.getElementById('eventDesc').value = '';
-      document.getElementById('modal').style.display = 'flex';
-    };
-
-    document.getElementById('saveBtn').onclick = () => {
-      const title = document.getElementById('eventTitle').value.trim();
-      if (!title) return alert("O título é obrigatório");
-
-      if (!currentEvents[selectedDayKey]) currentEvents[selectedDayKey] = [];
-
-      const newEvent = {
-        title,
-        time: document.getElementById('eventTime').value,
-        desc: document.getElementById('eventDesc').value,
-        color: document.querySelector('.color-option.selected').dataset.color,
-        done: false
-      };
-
-      if (editingIndex !== null) {
-        currentEvents[selectedDayKey][editingIndex] = newEvent;
-      } else {
-        currentEvents[selectedDayKey].push(newEvent);
-      }
-
-      saveData();
-      document.getElementById('modal').style.display = 'none';
-      renderCalendar();
-      renderEventList();
-    };
-
-    document.getElementById('cancelBtn').onclick = () => {
-      document.getElementById('modal').style.display = 'none';
-    };
-
-    // Seleção de cor
     document.querySelectorAll('.color-option').forEach(opt => {
       opt.onclick = () => {
         document.querySelectorAll('.color-option').forEach(o => o.classList.remove('selected'));
@@ -588,14 +570,13 @@
       };
     });
 
-    // Navegação de meses
-    document.getElementById('prevMonth').onclick = () => {
-      currentDate.setMonth(currentDate.getMonth() - 1);
-      renderCalendar();
+    document.getElementById('prevMonth').onclick = () => { 
+      currentDate.setMonth(currentDate.getMonth()-1); 
+      renderCalendar(); 
     };
-    document.getElementById('nextMonth').onclick = () => {
-      currentDate.setMonth(currentDate.getMonth() + 1);
-      renderCalendar();
+    document.getElementById('nextMonth').onclick = () => { 
+      currentDate.setMonth(currentDate.getMonth()+1); 
+      renderCalendar(); 
     };
 
     // Inicialização
